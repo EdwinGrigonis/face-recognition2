@@ -47,7 +47,7 @@ class App extends Component {
 
   loadUser = (data) => {
     this.setState({user: {
-      id: data,id,
+      id: data.id,
       name: data.name,
       email: data.email,
       entries: data.entries,
@@ -80,11 +80,9 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
     app.models
       .predict(
-  
         Clarifai.FACE_DETECT_MODEL,
         this.state.input)
       .then(response => {
-        console.log('hi', response)
         if (response) {
           fetch('http://localhost:3000/image', {
             method: 'put',
