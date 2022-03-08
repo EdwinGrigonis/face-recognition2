@@ -7,7 +7,7 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import Rank from './components/Rank/Rank';
+import Entries from './components/Entries/Entries';
 import './App.css';
 
 const app = new Clarifai.App({
@@ -85,22 +85,21 @@ class App extends Component {
       .then(response => {
         if (response) {
           fetch('http://localhost:3000/image', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              id: this.state.user.id
-            })
+          method: 'put',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id
           })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count}))
-            })
-
-        }
-        this.displayFaceBox(this.calculateFaceLocation(response))
+        })
+          .then(response => response.json())
+          .then(count => {
+            this.setState(Object.assign(this.state.user, count))
+          })
+      }
+      this.displayFaceBox(this.calculateFaceLocation(response))
       })
       .catch(err => console.log(err));
-  }
+      }
 
   onRouteChange = (route) => {
     if (route === 'signout') {
@@ -122,7 +121,7 @@ class App extends Component {
         { route === 'home'
           ? <div>
               <Logo />
-              <Rank
+              <Entries
                 name={this.state.user.name}
                 entries={this.state.user.entries}
               />
