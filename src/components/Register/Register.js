@@ -23,6 +23,7 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    //fails here, "unable to register"
     fetch('https://mighty-depths-37987.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
