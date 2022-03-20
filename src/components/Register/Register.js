@@ -54,6 +54,7 @@ class Register extends React.Component {
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="text"
                   name="name"
+                  required="name is required"
                   id="name"
                   onChange={this.onNameChange}
                 />
@@ -65,6 +66,8 @@ class Register extends React.Component {
                   type="email"
                   name="email-address"
                   id="email-address"
+                  required="email is required"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   onChange={this.onEmailChange}
                 />
               </div>
@@ -75,6 +78,9 @@ class Register extends React.Component {
                   type="password"
                   name="password"
                   id="password"
+                  required="password is required"
+                  min={5}
+                  placeholder='minimum 5 characters'
                   onChange={this.onPasswordChange}
                 />
               </div>
